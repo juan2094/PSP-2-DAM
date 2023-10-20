@@ -11,6 +11,7 @@ package com.mycompany.ejercicio3;
 
 public class InterfazGrafica extends javax.swing.JFrame {
     MyList lista = new MyList<>();
+    MyList lista2;
     /**
      * Creates new form InterfazGrafica
      */
@@ -27,7 +28,7 @@ public class InterfazGrafica extends javax.swing.JFrame {
        lista.add(new Empleado(4,"Castro","19/02/95",12040,"tecnico4"));
        lista.add(new Empleado(5,"Rodrigo","30/01/99",12050,"tecnico5"));
        
-       Empleado aux = (Empleado) lista.getFirstNode().getMain();
+       Empleado aux = (Empleado) lista.getLastNode().getMain();
        
        mostrarDatos(aux);
         
@@ -65,6 +66,7 @@ public class InterfazGrafica extends javax.swing.JFrame {
         txtFiltro = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         btnFiltro = new javax.swing.JButton();
+        btnActivar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,12 +144,25 @@ public class InterfazGrafica extends javax.swing.JFrame {
             }
         });
 
+        txtFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFiltroActionPerformed(evt);
+            }
+        });
+
         jLabel6.setText("Filtro");
 
         btnFiltro.setText("Borrar");
         btnFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFiltroActionPerformed(evt);
+            }
+        });
+
+        btnActivar.setText("Activar");
+        btnActivar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActivarActionPerformed(evt);
             }
         });
 
@@ -162,18 +177,18 @@ public class InterfazGrafica extends javax.swing.JFrame {
                     .addComponent(btnRetroceder))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(btnModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBorrar))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(btnOk, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnNook, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnAvanzar)))
-                .addGap(50, 50, 50))
+                        .addGap(36, 36, 36)
+                        .addComponent(btnAvanzar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(btnModificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBorrar)))
+                .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -200,31 +215,44 @@ public class InterfazGrafica extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnFiltro)
-                            .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(60, 60, 60))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnFiltro)
+                                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnActivar)
+                                .addGap(1, 1, 1)))
+                        .addGap(60, 60, 60))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel6)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(btnActivar)
+                        .addGap(18, 18, 18)
                         .addComponent(btnFiltro)
                         .addGap(36, 36, 36)
                         .addComponent(jLabel5))
@@ -411,13 +439,85 @@ public class InterfazGrafica extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFiltroActionPerformed
 
+    private void btnActivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActivarActionPerformed
+        // TODO add your handling code here:
+        
+       /* 
+        while(lista.isFirst()!=true){
+            
+            lista.nextNode();
+            
+        }
+        */
+        
+        String fechaFiltro = txtFiltro.getText();
+        
+        
+      //  
+        Empleado aux = (Empleado) lista.getActualNode().getMain();
+       
+        lista2 = new MyList<Empleado>();
+        
+        while (!lista.isFirst()) {
+        Empleado empleado = (Empleado) lista.getActualNode().getMain();
+        if (empleado.getFechaAlta().equals(fechaFiltro)) {
+            lista2.add(empleado);
+        }
+        lista.nextNode();
+    }
+        
+          Empleado aux2=(Empleado) lista2.getActualNode().getMain();
+      
+          mostrarDatos(aux2);
+       
+        btnRetroceder.setEnabled(false);
+        btnAvanzar.setEnabled(true);
+    
+        
+        /*
+        if(txtFiltro.getText()!=null){
+        fechaFiltro=txtFiltro.getText();
+        
+        while(lista.isFirst()!=true){
+            
+            lista.nextNode();
+            
+        }
+        
+         while(aux.getFechaAlta()!=fechaFiltro){
+         
+             lista.previousNode();
+             
+        }
+         mostrarDatos(aux);
+          
+          if(lista.isFirst()){
+              btnAvanzar.setEnabled(false);
+          }
+          if(lista.isLast()){
+              btnRetroceder.setEnabled(false);
+          }
+        
+        
+        }
+        
+        */
+       
+        
+         
+        
+        
+    }//GEN-LAST:event_btnActivarActionPerformed
+
+    private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiltroActionPerformed
+
     
     private void limpiarCampos() {
     txtNombre.setText("");
     txtNumero.setText("");
-   
-    txtFecha.setText("");
-    
+    txtFecha.setText("");   
     txtSueldo.setText("");
     txtPuesto.setText("");
 }
@@ -455,16 +555,10 @@ public class InterfazGrafica extends javax.swing.JFrame {
                 new InterfazGrafica().setVisible(true);
             }
         });
-        
-        
-        
     }
 
     
     public void mostrarDatos(Empleado aux){
-        
-        
-       
             txtNombre.setText(""+aux.getNombre());
             txtNumero.setText(""+aux.getNumero());
             txtFecha.setText(""+aux.getFechaAlta());
@@ -472,7 +566,10 @@ public class InterfazGrafica extends javax.swing.JFrame {
             txtPuesto.setText(""+aux.getPuesto());
     }
     
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActivar;
     private javax.swing.JButton btnAvanzar;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnCrear;
